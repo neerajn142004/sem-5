@@ -1,0 +1,58 @@
+# Ignore Python virtual environments
+venv_14/
+env/
+
+# Ignore Python bytecode and caches
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore editor/IDE configurations
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore logs
+*.log
+
+# Ignore environment variable files
+*.env
+
+# Ignore Git-related files and directories
+.git/
+.github/
+.gitignore
+
+# Ignore test directories and files if not needed
+
+research/
+
+
+LICENSE
+README.md
+venv_14/
+get_dir_structure.py
+
+
+artifacts/af_01_data_ingestion/input_data/neu_metal_surface_defects_data/*
+artifacts/af_02_data_preprocessing/*
+artifacts/af_03_dataset_loader/*
+artifacts/af_04_model_builder/
+artifacts/af_05_prepare_callbacks/
+artifacts/af_06_model_tranier_evaluation/
+artifacts/af_07_hyperparameter_tuning/*
+
+!artifacts/af_01_data_ingestion/input_data/neu_metal_surface_defects_data/test/
+!artifacts/af_02_data_preprocessing/pre_processor.joblib
+!artifacts/af_03_dataset_loader/class_labels.json
+!artifacts/af_07_hyperparameter_tuning/tuned_model.h5
+
+LICENSE
+README.md
+template.py
+metal_surface_defect_detection_cnn.ipynb

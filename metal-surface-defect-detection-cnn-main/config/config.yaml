@@ -1,0 +1,55 @@
+artifacts_root: artifacts
+
+data_ingestion:
+    root_dir: artifacts/af_01_data_ingestion
+    dataset_identifier: 'fantacher/neu-metal-surface-defects-data'
+
+data_preprocessing:
+    root_dir: artifacts/af_02_data_preprocessing
+    raw_train: artifacts/af_01_data_ingestion/input_data/neu_metal_surface_defects_data/train
+    raw_valid: artifacts/af_01_data_ingestion/input_data/neu_metal_surface_defects_data/valid
+    raw_test: artifacts/af_01_data_ingestion/input_data/neu_metal_surface_defects_data/test
+    resize_train: artifacts/af_02_data_preprocessing/resized_images_224/train
+    resize_valid: artifacts/af_02_data_preprocessing/resized_images_224/valid
+    resize_test: artifacts/af_02_data_preprocessing/resized_images_224/test
+    preprocessor_path: artifacts/af_02_data_preprocessing/pre_processor.joblib
+
+dataset_loader:
+    root_dir: artifacts/af_03_dataset_loader
+    resize_train: artifacts/af_02_data_preprocessing/resized_images_224/train
+    resize_valid: artifacts/af_02_data_preprocessing/resized_images_224/valid
+    resize_test: artifacts/af_02_data_preprocessing/resized_images_224/test
+    preprocessor_path: artifacts/af_02_data_preprocessing/pre_processor.joblib
+    class_labels_path: artifacts/af_03_dataset_loader/class_labels.json
+    train_ds_path: artifacts/af_03_dataset_loader/train_ds
+    valid_ds_path: artifacts/af_03_dataset_loader/valid_ds
+    test_ds_path: artifacts/af_03_dataset_loader/test_ds
+
+model_builder:
+    root_dir: artifacts/af_04_model_builder
+    model_summaries: artifacts/af_04_model_builder/model_summaries.txt
+
+prepare_callbacks:
+    root_dir: artifacts/af_05_prepare_callbacks
+    tensorboard_log_dir: artifacts/af_05_prepare_callbacks/tensorboard_log_dir
+    checkpoint_filepath: artifacts/af_05_prepare_callbacks/checkpoint_dir/model.h5
+
+model_trainer_evaluation:
+    root_dir: artifacts/af_06_model_tranier_evaluation
+    train_ds: artifacts/af_03_dataset_loader/train_ds
+    valid_ds: artifacts/af_03_dataset_loader/valid_ds
+    class_labels_path: artifacts/af_03_dataset_loader/class_labels.json
+    best_base_model_path: artifacts/af_06_model_tranier_evaluation/best_base_model.json 
+    base_metrics_file: artifacts/af_06_model_tranier_evaluation/base_models_metrics.json
+    base_cm_plot: artifacts/af_06_model_tranier_evaluation
+
+hyperparameter_tuning:
+    root_dir: artifacts/af_07_hyperparameter_tuning
+    train_ds: artifacts/af_03_dataset_loader/train_ds
+    valid_ds: artifacts/af_03_dataset_loader/valid_ds
+    test_ds:  artifacts/af_03_dataset_loader/test_ds
+    class_labels_path: artifacts/af_03_dataset_loader/class_labels.json
+    best_base_model_path: artifacts/af_06_model_tranier_evaluation/best_base_model.json 
+    tuned_model_metrics_file: artifacts/af_07_hyperparameter_tuning/tuned_models_metrics.json
+    tuned_model_cm_plot: artifacts/af_07_hyperparameter_tuning
+    tuned_model_path: artifacts/af_07_hyperparameter_tuning/tuned_model.h5

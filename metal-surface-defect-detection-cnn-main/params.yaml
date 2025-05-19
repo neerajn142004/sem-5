@@ -1,0 +1,37 @@
+# Data Ingestion directory names
+directory_names:
+# Define the name of the folder where the dataset will be downloaded and extracted
+  input_data_folder: input_data
+
+# Define the standardized name for the dataset directory after extraction and renaming
+  new_dir_name: neu_metal_surface_defects_data
+
+image_preprocessing:
+  target_size: [224, 224]
+  batch_size: 32
+  shuffle: True
+
+common_params:
+  input_shape: [224, 224, 3]  # Input shape of images used for training (Height, Width, Channels).
+  num_classes: 6              # Number of output classes for classification.
+
+model_builder:
+  # model_names: ['vgg16', 'resnet50', 'mobilenetv2', 'efficientnetb0', 'custom_cnn'] # List of model names to be used in the training pipeline.
+  model_names: ['vgg16', 'custom_cnn'] # List of model names to be used in the training pipeline.
+  include_top: false              # Whether to include the top (fully connected) layers of the pre-trained models.
+  freeze_all: True                # Whether to freeze all layers in the pre-trained model.
+  freeze_till: null               # Number of layers to keep frozen in the pre-trained model.
+  learning_rate: 0.001            # Learning rate for the optimizer.
+  loss_function: "sparse_categorical_crossentropy" # Loss function used for training.
+  optimizer: "sgd"                # Optimizer used for training.
+
+model_trainer:
+  epochs: 10
+
+hyper_tuning:
+  max_trials: 5
+  epochs: 10
+
+# MLflow configuration
+mlflow:
+  experiment_name: metal_surface_crack_detection
